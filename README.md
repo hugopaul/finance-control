@@ -50,7 +50,7 @@ docker-compose -f docker-compose.prod.yml up --build
 
 - **Frontend**: http://localhost:3000
 - **Backend API**: http://localhost:8000
-- **PostgreSQL**: localhost:5432
+- **PostgreSQL**: localhost:5433
 
 ## 🔧 Configuração
 
@@ -107,6 +107,8 @@ docker-compose exec frontend npm test
 
 # Database
 docker-compose exec db psql -U finance_admin -d finance_control
+# Ou conectar diretamente via porta 5433:
+# psql -h localhost -p 5433 -U finance_admin -d finance_control
 ```
 
 ## 📁 Estrutura do Projeto
@@ -145,7 +147,7 @@ O sistema inclui health checks para todos os serviços:
 
 ### Problemas comuns
 
-1. **Porta já em uso**: Verifique se as portas 3000, 8000 e 5432 estão livres
+1. **Porta já em uso**: Verifique se as portas 3000, 8000 e 5433 estão livres
 2. **Erro de conexão com banco**: Aguarde o banco inicializar completamente
 3. **Frontend não carrega**: Verifique se o backend está rodando na porta 8000
 

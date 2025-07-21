@@ -63,7 +63,7 @@ run_dev() {
     print_message "Iniciando em modo DESENVOLVIMENTO..."
     print_message "Frontend: http://localhost:3000"
     print_message "Backend: http://localhost:8000"
-    print_message "Database: localhost:5432"
+    print_message "Database: localhost:5433"
     echo ""
     
     docker-compose up --build
@@ -74,7 +74,7 @@ run_prod() {
     print_message "Iniciando em modo PRODUÇÃO..."
     print_message "Frontend: http://localhost:3000"
     print_message "Backend: http://localhost:8000"
-    print_message "Database: localhost:5432"
+    print_message "Database: localhost:5433"
     echo ""
     
     docker-compose -f docker-compose.prod.yml up --build
