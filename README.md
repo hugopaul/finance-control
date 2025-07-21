@@ -135,13 +135,21 @@ controle-financeiro/
 └── README.md
 ```
 
-## 🔍 Health Checks
+## 🔍 Health Checks e Resiliência
 
-O sistema inclui health checks para todos os serviços:
+O sistema inclui health checks e configurações de resiliência para todos os serviços:
 
+### Health Checks
 - **Database**: Verifica se o PostgreSQL está respondendo
 - **Backend**: Verifica se a API está respondendo em `/health`
 - **Frontend**: Verifica se o servidor web está respondendo
+
+### Configurações de Resiliência (Produção)
+- **Restart Policies**: `unless-stopped` para todos os serviços
+- **Resource Limits**: Limites de CPU e memória configurados
+- **Log Rotation**: Logs limitados a 10MB com máximo de 3 arquivos
+- **Multiple Workers**: Backend com 4 workers para melhor performance
+- **Graceful Shutdown**: Configurações para shutdown suave
 
 ## 🚨 Troubleshooting
 
