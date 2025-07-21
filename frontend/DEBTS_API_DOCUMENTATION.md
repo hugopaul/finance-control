@@ -38,7 +38,7 @@ Authorization: Bearer <token>
 **Exemplo:**
 ```bash
 curl -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..." \
-     http://localhost:8000/debts/
+     https://solidtechsolutions.com.br/api/debts/
 ```
 
 ---

@@ -8,7 +8,7 @@ Crie um arquivo `.env` baseado no `env.example`:
 
 ```env
 # API Configuration
-REACT_APP_API_URL=http://localhost:8000
+REACT_APP_API_URL=https://solidtechsolutions.com.br/api
 
 # Environment
 REACT_APP_ENV=development

@@ -1,6 +1,6 @@
 import requests
 
-url = 'http://localhost:8000/debts/ae7f06e0-cc28-497c-b952-97283b377b6c'
+url = 'https://solidtechsolutions.com.br/api/debts/ae7f06e0-cc28-497c-b952-97283b377b6c'
 headers = {
     'Accept': '*/*',
     'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxNThmZWE2NS1jZTg3LTQ0YjgtOTc3ZC1kNjRiODIxYjg5MGMiLCJleHAiOjE3NTMwMzkxMTEsInR5cGUiOiJhY2Nlc3MifQ.4tLzwmdnEqmcXMXHLWbHsESO4PQ_GclSK8BBPFxWMSs',

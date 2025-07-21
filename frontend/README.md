@@ -63,7 +63,7 @@ cp env.example .env
 
 Edite o arquivo `.env`:
 ```env
-REACT_APP_API_URL=http://localhost:8000
+REACT_APP_API_URL=https://solidtechsolutions.com.br/api
 ```
 
 ### 4. Execute o projeto

@@ -7,7 +7,7 @@
 
 ## 🔗 Base URL
 ```
-http://localhost:8000
+https://solidtechsolutions.com.br/api
 ```
 
 ## 📋 Histórico de Versões

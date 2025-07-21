@@ -49,7 +49,7 @@ docker-compose -f docker-compose.prod.yml up --build
 ## 📋 Serviços
 
 - **Frontend**: http://localhost:3000
-- **Backend API**: http://localhost:8000
+- **Backend API**: https://solidtechsolutions.com.br/api
 - **PostgreSQL**: localhost:5433
 
 ## 🔧 Configuração
@@ -76,7 +76,7 @@ cp env.example .env
 - `JWT_REFRESH_TOKEN_EXPIRE_DAYS`: Tempo de expiração do refresh token (padrão: 7)
 
 #### Frontend
-- `REACT_APP_API_URL`: URL da API backend (padrão: http://localhost:8000)
+- `REACT_APP_API_URL`: URL da API backend (padrão: https://solidtechsolutions.com.br/api)
 
 ## 🛠️ Comandos Úteis
 
