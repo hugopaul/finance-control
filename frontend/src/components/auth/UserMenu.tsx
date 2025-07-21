@@ -10,6 +10,8 @@ interface UserProfile {
   createdAt: string;
 }
 
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+
 const UserMenu: React.FC = () => {
   const { state, logout } = useAuth();
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
@@ -33,7 +35,7 @@ const UserMenu: React.FC = () => {
       const token = localStorage.getItem('authToken');
       if (!token) return;
 
-      const response = await fetch('http://localhost:8000/auth/me', {
+      const response = await fetch(API_BASE_URL + '/auth/me', {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
