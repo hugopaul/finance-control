@@ -27,7 +27,7 @@ const TransactionModal: React.FC<TransactionModalProps> = ({ isOpen, onClose, ed
     payment_method_id: '',
   });
 
-  // Carregar formas de pagamento quando o modal é aberto
+  // Carregar formas de pagamento e categorias quando o modal é aberto
   useEffect(() => {
     if (isOpen) {
       const loadPaymentMethods = async () => {
@@ -43,12 +43,29 @@ const TransactionModal: React.FC<TransactionModalProps> = ({ isOpen, onClose, ed
         }
       };
 
+      const loadCategories = async () => {
+        try {
+          setIsLoading(true);
+          const result = await FinancialService.getCategories();
+          // A API pode retornar { categories: [...] } ou um array direto
+          const categories = Array.isArray(result) ? result : (result?.data?.categories || result?.categories || []);
+          dispatch({ type: 'LOAD_CATEGORIES', payload: categories });
+        } catch (error) {
+          console.warn('Erro ao carregar categorias:', error);
+        } finally {
+          setIsLoading(false);
+        }
+      };
+
       // Só carrega se não tiver dados ou se estiver vazio
       if (!Array.isArray(state.paymentMethods) || state.paymentMethods.length === 0) {
         loadPaymentMethods();
       }
+      if (!Array.isArray(state.categories) || state.categories.length === 0) {
+        loadCategories();
+      }
     }
-  }, [isOpen, state.paymentMethods.length, dispatch]);
+  }, [isOpen, state.paymentMethods.length, state.categories.length, dispatch]);
 
   // Preencher formulário quando estiver editando
   useEffect(() => {
@@ -146,7 +163,9 @@ const TransactionModal: React.FC<TransactionModalProps> = ({ isOpen, onClose, ed
         {isLoading && (
           <div className="flex justify-center items-center py-8">
             <span className="loading loading-spinner loading-lg"></span>
-            <span className="ml-2">Carregando formas de pagamento...</span>
+            <span className="ml-2">
+              Carregando {(!Array.isArray(state.paymentMethods) || state.paymentMethods.length === 0) ? 'formas de pagamento' : 'categorias'}...
+            </span>
           </div>
         )}
 
