@@ -48,16 +48,23 @@ const Dashboard: React.FC = () => {
     setEditingTransaction(null);
   };
 
-  const handleDeleteTransaction = async (transactionId: string) => {
-    if (window.confirm('Tem certeza que deseja deletar esta transação?')) {
-      setDeletingTransactionId(transactionId);
-      try {
-        await deleteTransaction(transactionId);
-      } catch (error) {
-        console.error('Erro ao deletar transação:', error);
-      } finally {
-        setDeletingTransactionId(null);
-      }
+  // Substituir o handleDeleteTransaction para usar o modal de confirmação
+  const [showConfirm, setShowConfirm] = useState<{ open: boolean; id: string | null }>({ open: false, id: null });
+
+  const handleDeleteTransaction = (transactionId: string) => {
+    setShowConfirm({ open: true, id: transactionId });
+  };
+
+  const confirmDelete = async () => {
+    if (!showConfirm.id) return;
+    setDeletingTransactionId(showConfirm.id);
+    try {
+      await deleteTransaction(showConfirm.id);
+    } catch (error) {
+      console.error('Erro ao deletar transação:', error);
+    } finally {
+      setDeletingTransactionId(null);
+      setShowConfirm({ open: false, id: null });
     }
   };
 
@@ -322,6 +329,19 @@ const Dashboard: React.FC = () => {
         onClose={handleCloseModal}
         editingTransaction={editingTransaction}
       />
+
+      {showConfirm.open && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40">
+          <div className="modal-box bg-base-100 border border-base-300">
+            <h3 className="font-bold text-lg mb-4">Confirmar Exclusão</h3>
+            <p>Tem certeza que deseja excluir esta transação?</p>
+            <div className="mt-6 flex justify-end gap-2">
+              <button className="btn btn-ghost" onClick={() => setShowConfirm({ open: false, id: null })}>Cancelar</button>
+              <button className="btn btn-error" onClick={confirmDelete} disabled={deletingTransactionId !== null}>Excluir</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
