@@ -22,14 +22,12 @@ def list_transactions(
     month: Optional[str] = Query(None, description="YYYY-MM"),
     type: Optional[str] = Query(None),
     category: Optional[str] = Query(None),
-    page: int = Query(1, ge=1),
-    limit: int = Query(20, ge=1, le=100),
     authorization: str = Depends(get_current_user)
 ):
     db = SessionLocal()
     try:
         repo = TransactionRepository(db)
-        transactions, total = repo.list(authorization, month, type, category, page, limit)
+        transactions, total = repo.list(authorization, month, type, category)
         data = [TransactionDTO.model_validate(t, from_attributes=True).model_dump(mode="json") for t in transactions]
         return success_response(data=data, message="Transações listadas com sucesso")
     finally:

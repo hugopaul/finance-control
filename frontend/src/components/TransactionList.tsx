@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Transaction } from '../types';
-import { format } from 'date-fns';
+import { format, parseISO } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import { ArrowUpRight, ArrowDownLeft, X, Trash2, Edit } from 'lucide-react';
 import { useFinancial } from '../context/FinancialContext';
@@ -72,7 +72,7 @@ const TransactionList: React.FC<TransactionListProps> = ({
             {transaction.description}
           </h4>
           <p className="text-xs sm:text-sm text-base-content/60">
-            {format(new Date(transaction.date), 'dd/MM/yyyy', { locale: ptBR })}
+            {format(parseISO(transaction.date), 'dd/MM/yyyy', { locale: ptBR })}
           </p>
           <div className="flex flex-wrap items-center gap-1 sm:gap-2 mt-1">
             <span className="badge badge-outline badge-xs sm:badge-sm">

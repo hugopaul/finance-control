@@ -1,6 +1,6 @@
 import React from 'react';
 import { Person, Debt } from '../../types';
-import { format } from 'date-fns';
+import { format, parseISO } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import { User, DollarSign, Calendar, TrendingUp, TrendingDown } from 'lucide-react';
 
@@ -112,7 +112,7 @@ const DebtPersonSummary: React.FC<DebtPersonSummaryProps> = ({ person, debts }) 
                     <div>
                       <p className="font-medium text-base-content">{debt.description}</p>
                       <p className="text-xs text-base-content/60">
-                        {format(new Date(debt.date), 'dd/MM/yyyy', { locale: ptBR })}
+                        {format(parseISO(debt.date), 'dd/MM/yyyy', { locale: ptBR })}
                         {debt.installments && debt.total_installments && debt.total_installments > 1 && (
                           <span className="ml-2 text-primary">
                             ({debt.installments}/{debt.total_installments})

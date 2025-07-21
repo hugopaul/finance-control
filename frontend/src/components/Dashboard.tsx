@@ -7,7 +7,7 @@ import TransactionList from './TransactionList';
 import ExpenseChart from './ExpenseChart';
 import GoalsSection from './GoalsSection';
 import TransactionModal from './TransactionModal';
-import { format } from 'date-fns';
+import { format, parseISO } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import { Plus, Edit, Trash2 } from 'lucide-react';
 
@@ -176,7 +176,7 @@ const Dashboard: React.FC = () => {
                                     {transaction.description}
                                   </h4>
                                   <p className="text-sm text-base-content/60">
-                                    {format(new Date(transaction.date), 'dd/MM/yyyy', { locale: ptBR })}
+                                    {format(parseISO(transaction.date), 'dd/MM/yyyy', { locale: ptBR })}
                                   </p>
                                   <div className="flex items-center space-x-2 mt-2">
                                     <span className="badge badge-outline badge-sm">
@@ -257,7 +257,7 @@ const Dashboard: React.FC = () => {
                               <div>
                                 <h4 className="font-semibold">{transaction.description}</h4>
                                 <p className="text-sm text-gray-600">
-                                  {format(new Date(transaction.date), 'dd/MM/yyyy', { locale: ptBR })}
+                                  {format(parseISO(transaction.date), 'dd/MM/yyyy', { locale: ptBR })}
                                 </p>
                                 <div className="flex items-center space-x-2 mt-2">
                                   <span className="badge badge-outline badge-sm">

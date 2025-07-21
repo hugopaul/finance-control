@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { useDebt } from '../context/DebtContext';
-import { format } from 'date-fns';
+import { format, parseISO } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import { Users, AlertCircle, CheckCircle, Plus, UserPlus, Edit, Trash2 } from 'lucide-react';
 import DebtSummaryCards from './debt/DebtSummaryCards';
@@ -218,7 +218,7 @@ const DebtDashboard: React.FC = () => {
                               <div>
                                 <h4 className="font-semibold text-base-content">{debt.description}</h4>
                                 <p className="text-sm text-base-content/60">
-                                  {person?.name} • {format(new Date(debt.date), 'dd/MM/yyyy', { locale: ptBR })}
+                                  {person?.name} • {format(parseISO(debt.date), 'dd/MM/yyyy', { locale: ptBR })}
                                 </p>
                                 {debt.installments && debt.total_installments && debt.total_installments > 1 && (
                                   <p className="text-xs text-base-content/50 mt-1">

@@ -10,7 +10,7 @@ class TransactionRepository:
     def __init__(self, db: Session):
         self.db = db
 
-    def list(self, user_id: str, month: Optional[str] = None, type_: Optional[str] = None, category: Optional[str] = None, page: int = 1, limit: int = 20) -> Tuple[List[TransactionDTO], int]:
+    def list(self, user_id: str, month: Optional[str] = None, type_: Optional[str] = None, category: Optional[str] = None) -> Tuple[List[TransactionDTO], int]:
         query = self.db.query(TransactionModel).filter(TransactionModel.user_id == user_id)
         
         if month:
@@ -29,7 +29,7 @@ class TransactionRepository:
             query = query.filter(TransactionModel.category == category)
             
         total = query.count()
-        transactions = query.order_by(TransactionModel.date.desc()).offset((page-1)*limit).limit(limit).all()
+        transactions = query.order_by(TransactionModel.date.desc()).all()
         return [TransactionDTO.model_validate(t) for t in transactions], total
 
     def get(self, user_id: str, transaction_id: str) -> TransactionDTO | None:

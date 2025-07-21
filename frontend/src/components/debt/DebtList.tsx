@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Debt } from '../../types';
 import { useDebt } from '../../context/DebtContext';
-import { format } from 'date-fns';
+import { format, parseISO } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import { AlertCircle, CheckCircle, Clock, Edit, Trash2, X } from 'lucide-react';
 
@@ -71,13 +71,13 @@ const DebtList: React.FC<DebtListProps> = ({
               {debt.description}
             </h4>
             <p className="text-xs sm:text-sm text-base-content/60">
-              {person?.name} • {format(new Date(debt.date), 'dd/MM/yyyy', { locale: ptBR })}
+              {person?.name} • {format(parseISO(debt.date), 'dd/MM/yyyy', { locale: ptBR })}
             </p>
             <div className="flex flex-wrap items-center gap-1 sm:gap-2 mt-1">
               {getStatusBadge(debt.status)}
               {debt.due_date && (
                 <span className="badge badge-outline badge-xs sm:badge-sm">
-                  Vence: {format(new Date(debt.due_date), 'dd/MM', { locale: ptBR })}
+                  Vence: {format(parseISO(debt.due_date), 'dd/MM', { locale: ptBR })}
                 </span>
               )}
               {debt.installments && debt.total_installments && debt.total_installments > 1 && (
