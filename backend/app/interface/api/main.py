@@ -11,7 +11,7 @@ import os
 app = FastAPI()
 
 # Configuração de CORS
-allow_origins = os.getenv("CORS_ALLOW_ORIGINS", "http://localhost:3000").split(",")
+allow_origins = os.getenv("CORS_ALLOW_ORIGINS", "https://controle.solidtechsolutions.com.br").split(",")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=allow_origins,
